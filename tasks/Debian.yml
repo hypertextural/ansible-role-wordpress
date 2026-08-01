@@ -1,4 +1,14 @@
 ---
+- name: (Debian) Enable Apache headers module
+  community.general.apache2_module:
+    name: "headers"
+    state: present
+    ignore_configcheck: true
+  failed_when:
+    - result.rc is defined
+    - result.rc > 0
+  register: result
+
 - name: (Debian) Enable Apache mpm_event module
   community.general.apache2_module:
     name: "mpm_event"

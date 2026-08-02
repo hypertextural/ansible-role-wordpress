@@ -162,10 +162,10 @@ php_proc_mem: 96
 # PHP memory allocation = server memory (MB) / php_proc_mem (MB) * children_buffer
 children_buffer: 0.75
 
-php_allow_url_fopen: 'on'
-php_allow_url_include: 'off'
-php_catch_workers_output: 'yes'
-php_disable_functions: 'exec,passthru,shell_exec,system'
+php_allow_url_fopen: "on"
+php_allow_url_include: "off"
+php_catch_workers_output: "yes"
+php_disable_functions: "exec,passthru,shell_exec,system"
 php_request_slowlog_timeout: 0
 
 #
@@ -182,7 +182,8 @@ nginx_ratelimit_paths: ".*login\\.php|xmlrpc\\.php|wp-cron\\.php"
 #
 # Nginx Cache Configs
 #
-nginx_cache_bypass_paths: "^(_logged_in_|items_in_cart|jsid|.*/wp-admin|.*/administrator|/admin|\
+nginx_cache_bypass_paths:
+  "^(_logged_in_|items_in_cart|jsid|.*/wp-admin|.*/administrator|/admin|\
   /user|/opcache\\.php|.*/phpinfo\\.php|/basket.*|/cart.*|/my-account.*|/checkout.*|/addons.*|\
   /wp-json.*|/ultrastack.*)"
 nginx_cache_purge_enable: false

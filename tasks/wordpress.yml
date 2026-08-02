@@ -22,14 +22,14 @@
   when: wp_db_pass is undefined
 
 - name: Create WordPress database
-  community.mysql.mysql_db:
+  ansible.mysql.mysql_db:
     login_unix_socket: "{{ mysql_socket_path }}"
     name: "{{ wp_db_name }}"
     state: present
   register: wp_db_setup
 
 - name: Create DB user
-  community.mysql.mysql_user:
+  ansible.mysql.mysql_user:
     login_unix_socket: "{{ mysql_socket_path }}"
     name: "{{ wp_db_user }}"
     password: "{{ wp_db_pass }}"

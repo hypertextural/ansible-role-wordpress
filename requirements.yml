@@ -14,7 +14,8 @@ roles:
 
   - name: inmotionhosting.redis
     version: "3.0.0"
+
 collections:
-  - name: community.general
-  - name: community.mysql
+  - name: ansible.mysql
   - name: ansible.posix
+  - name: community.general

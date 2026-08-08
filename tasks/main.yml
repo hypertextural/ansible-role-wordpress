@@ -264,7 +264,7 @@
 
     - name: Install WordPress
       ansible.builtin.include_tasks: wordpress.yml
-      when: not wp_config.stat.exists
+      when: (not wp_config.stat.exists) or (wp_install_force|d(False))
 
     - name: Get WordPress Site Url
       ansible.builtin.command: >-

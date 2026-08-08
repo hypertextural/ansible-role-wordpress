@@ -35,8 +35,6 @@ wp_db_user: "{{ system_user }}"
 # WordPress plugins to install and activate
 wp_plugins:
   - block-bad-queries
-  - health-check
-  - heartbeat-control
   - nginx-helper
   - w3-total-cache
 

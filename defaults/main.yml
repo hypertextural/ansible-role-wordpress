@@ -115,8 +115,6 @@ wp_w3tc_settings:
   - setting: objectcache.engine
     type: string
     value: file
-
-ultrastack_w3tc_settings:
   - setting: dbcache.engine
     type: string
     value: redis

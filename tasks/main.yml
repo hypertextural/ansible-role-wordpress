@@ -278,18 +278,19 @@
 
     - name: Replace all site urls in database if changed
       ansible.builtin.command: >-
-        wp search-replace "{{ siteurl.stdout }}" "{{ wp_protocol }}{{ site_domain }}" --skip-plugins --skip-themes
+        wp search-replace "{{ siteurl.stdout }}" "{{ wp_protocol }}{{
+        site_domain }}" --skip-plugins --skip-themes
       args:
         chdir: "{{ wp_system_path }}"
       become: true
       become_user: "{{ system_user }}"
       changed_when: false
-      when: siteurl.stdout is defined and siteurl.stdout != wp_protocol + site_domain
+      when:
+        siteurl.stdout is defined and siteurl.stdout != wp_protocol +
+        site_domain
       vars:
         wp_protocol: >-
-          {{ "https://"
-          if use_letsencrypt is defined
-          and use_letsencrypt | bool
+          {{ "https://" if use_letsencrypt is defined and use_letsencrypt | bool
           else "http://" }}
       register: search_replace
 
@@ -308,7 +309,8 @@
       block:
         - name: Set WordPress siteurl and homeurl with wp-cli
           ansible.builtin.command: >-
-            wp option set {{ item }} "{{ wp_protocol }}{{ site_domain }}" --skip-plugins --skip-themes
+            wp option set {{ item }} "{{ wp_protocol }}{{ site_domain }}"
+            --skip-plugins --skip-themes
           args:
             chdir: "{{ wp_system_path }}"
           become: true
@@ -316,10 +318,8 @@
           changed_when: false
           vars:
             wp_protocol: >-
-              {{ "https://"
-              if use_letsencrypt is defined
-              and use_letsencrypt | bool
-              else "http://" }}
+              {{ "https://" if use_letsencrypt is defined and use_letsencrypt |
+              bool else "http://" }}
           with_items:
             - siteurl
             - home
@@ -333,10 +333,8 @@
             state: present
           vars:
             wp_protocol: >-
-              {{ "https://"
-              if use_letsencrypt is defined
-              and use_letsencrypt | bool
-              else "http://" }}
+              {{ "https://" if use_letsencrypt is defined and use_letsencrypt |
+              bool else "http://" }}
           with_items:
             - WP_HOME
             - WP_SITEURL
@@ -354,7 +352,8 @@
 
     - name: Ensure NGINX Helper Cache Path is correct
       ansible.builtin.command: >-
-        wp config set RT_WP_NGINX_HELPER_CACHE_PATH "{{ nginx_cache_path }}" --skip-plugins --skip-themes
+        wp config set RT_WP_NGINX_HELPER_CACHE_PATH "{{ nginx_cache_path }}"
+        --skip-plugins --skip-themes
       args:
         chdir: "{{ wp_system_path }}"
       become: true

@@ -146,7 +146,8 @@ use_redis: true
 
 # Generate a random password.  Used to create a safe password for the
 # WordPress database user via 'wp_db_pass'.
-pass_gen_alias: "{{ lookup('password', '/dev/null length=15 chars=ascii_letters') }}"
+pass_gen_alias:
+  "{{ lookup('password', '/dev/null length=15 chars=ascii_letters') }}"
 
 # Allow installation of WordPress and related tasks to be deferred (for pre-warming)
 install_wordpress: true

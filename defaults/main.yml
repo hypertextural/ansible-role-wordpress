@@ -103,6 +103,9 @@ wp_w3tc_settings:
   - setting: dbcache.engine
     type: string
     value: file
+  - setting: dbcache.reject.sql
+    type: array
+    value: "_wc_session_,_wp_session_,gdsr_,wp_rg_,give"
   - setting: lazyload.enabled
     type: boolean
     value: "true"
